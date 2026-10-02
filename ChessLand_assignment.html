@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChessLand.ir</title>
+    <link rel="icon" href="icons8-chess-100.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(95, 187, 224);
+            margin: 0;
+            font-family: "Roboto Slab", serif;
+        }
+
+     
+        header {
+            background-color: rgba(68, 117, 131, 0.888);
+            border-bottom: 4px solid darkblue;
+            padding: 10px 30px;
+            overflow: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+            float: left;
+            border-radius: 50%;
+            background-color: transparent;
+        }
+
+        h1 {
+            color: darkblue;
+            font-family: "Roboto Slab", serif;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 32px;
+            letter-spacing: 2px;
+        }
+
+        
+        .fehrest {
+            list-style-type: none;
+            margin: 15px 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .fehrest li {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .fehrest a {
+            display: block;
+            background-color: darkblue;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: "Roboto Slab", serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .fehrest a:hover {
+            background-color: rgb(255, 140, 0);
+            color: darkgreen;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        
+        .hero {
+            background-image: url('Screenshot 2026-08-21 183811.png');
+            height: 350px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 50, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero h2 {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-size: 42px;
+            text-shadow: 2px 2px 8px black;
+            background: none;
+            margin: 0 0 15px;
+            padding: 0;
+            border: none;
+        }
+
+        .hero p {
+            position: relative;
+            z-index: 2;
+            background: none;
+            color: white;
+            margin: 0 0 25px;
+            padding: 0;
+            font-size: 18px;
+            line-height: 1.8;
+            text-shadow: 1px 1px 5px black;
+        }
+
+        .hero .btn {
+            position: relative;
+            z-index: 2;
+            background-color: orange;
+            border-color: orange;
+            color: darkblue;
+            font-size: 16px;
+            padding: 14px 35px;
+        }
+
+        .hero .btn:hover {
+            background-color: white;
+            color: orange;
+            border-color: white;
+        }
+
+        
+        .section-title {
+            background-color: rgb(255, 140, 0);
+            color: darkgreen;
+            margin: 30px 30px 15px;
+            padding: 12px 20px;
+            border-left: 8px solid darkblue;
+            border-radius: 5px;
+            font-family: "Roboto Slab", serif;
+        }
+
+        
+        p {
+            background-color: rgb(25, 57, 112);
+            color: lightyellow;
+            font-family: "Roboto Slab", serif;
+            margin: 20px 30px;
+            padding: 20px;
+            line-height: 2;
+            border-radius: 8px;
+        }
+
+        
+        .cards-wrapper {
+            overflow: auto;
+            padding: 10px 30px 40px;
+        }
+
+        .card {
+            width: 28%;
+            float: left;
+            margin: 2%;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(15, 15, 15, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-body h3 {
+            color: darkblue;
+            margin: 10px 0;
+            font-family: "Roboto Slab", serif;
+        }
+
+        .card-body p {
+            background: none;
+            color: #333;
+            margin: 0 0 15px;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            background-color: blueviolet;
+            color: white;
+            border: 2px solid blueviolet;
+            border-radius: 6px;
+            padding: 12px 25px;
+            font-family: "Roboto Slab", serif;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: white;
+            color: blueviolet;
+            transform: scale(1.05);
+        }
+
+        
+        .image-container {
+            text-align: center;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .image-container a {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .image-container img {
+            width: 250px;
+            height: 250px;
+            border: 5px solid green;
+            border-style: groove;
+            padding: 15px;
+            border-radius: 50%;
+            background-color: white;
+            transition: all 0.4s ease;
+        }
+
+        .image-container img:hover {
+            transform: rotate(5deg) scale(1.08);
+            border-color: orange;
+        }
+
+    </style>
+</head>
+<body>
+
+    
+    <header>
+        <img src="icons8-chess-100.png" alt="Chess icon" class="logo">
+        <h1>ChessLand</h1>
+        <ul class="fehrest">
+            <li><a href="https://lichess.org/" target="_blank">Lichess</a></li>
+            <li><a href="https://chess.com/" target="_blank">Chess.com</a></li>
+            <li><a href="https://chessiro.com/" target="_blank">Chess IRO</a></li>
+        </ul>
+    </header>
+
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Welcome to the World of Chess</h2>
+            <p>Discover the timeless game of strategy, logic, and passion</p>
+            <button class="btn">Get Started</button>
+        </div>
+    </section>
+
+    
+    <section id="history">
+        <h2 class="section-title">What is Chess?</h2>
+        <p>
+            Chess is a strategic two-player board game played on an 8×8 board.
+            It is a game of <u>logic</u>, planning, and concentration.
+            Each player moves their pieces across the board and tries to
+            checkmate the opponent's king. Chess is one of the most popular
+            and oldest mind games in the world, with a history of more than
+            1500 years, originating in ancient India.
+        </p>
+    </section>
+
+    
+    <section id="pieces">
+        <h2 class="section-title">Chess Pieces</h2>
+        <div class="cards-wrapper">
+
+            <div class="card">
+                <img src="Screenshot 2026-09-19 105650.png" alt="King piece">
+                <div class="card-body">
+                    <h3>King</h3>
+                    <p>The most important piece on the board. If it falls, the game is over.</p>
+                    <button class="btn">Learn More</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="Screenshot 2026-09-19 104919.png" alt="Queen piece">
+                <div class="card-body">
+                    <h3>Queen</h3>
+                    <p>The most powerful piece, able to move in any direction across the board.</p>
+                    <button class="btn">Learn More</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="Screenshot 2026-09-19 110106.png" alt="Knight piece">
+                <div class="card-body">
+                    <h3>Knight</h3>
+                    <p>The only piece that can jump over other pieces on the board.</p>
+                    <button class="btn">Learn More</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    
+    <section id="players">
+        <h2 class="section-title">Greatest Chess Players in History</h2>
+        <p>
+            Throughout history, great players have emerged in the world of chess
+            whose names are forever engraved in the game. From <b>Garry Kasparov</b>
+            of Russia, who was world champion for years, to <b>Magnus Carlsen</b>
+            of Norway, who broke many records with his modern and creative style.
+            <b>Bobby Fischer</b> of the USA, <b>José Raúl Capablanca</b> of Cuba,
+            and <b>Alexander Alekhine</b> of Russia are among other legends of the game.
+        </p>
+    </section>
+
+    
+    <section>
+        <h2 class="section-title">Image Gallery</h2>
+        <div class="image-container">
+            <a href="https://lichess.org/" target="_blank">
+                <img src="Screenshot 2026-08-21 183811.png" alt="Chess board">
+            </a>
+            <a href="https://lichess.org/" target="_blank">
+                <img src="Screenshot 2026-08-22 201601.png" alt="Chess player">
+            </a>
+        </div>
+    </section>
+
+</body>
+</html>
